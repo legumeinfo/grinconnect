@@ -7,4 +7,4 @@ files[] = grinconnect.module
 ;dependencies[] = 
 ;dependencies[] = 
 ;files[] = 
-;configure = admin/config/content/example
+;configure = 

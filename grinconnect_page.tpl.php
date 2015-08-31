@@ -5,7 +5,7 @@
 </div>
 
 <div>
-<form  method="post">
+<form  method="get">
   <br/>
   Enter your GRIN Accession Number? &nbsp;&nbsp;&nbsp;
   <input type="text" name="grin_acc_no" required value="<?php print $_POST['grin_acc_no']; ?>" >
@@ -23,12 +23,13 @@
 <!-- Message  -->
 <div>
   <hr/>
-  <fieldset  style="background: LightGray;">The following part displays a webpage directly from <b>GRIN.</b><br/>
+  <fieldset  style="background: LightGray;">The following part displays a webpage directly from <b>GRIN.</b>
+    <br/>
   </fieldset>
 </div>
 
 <?php
-$acc_no = $_POST['grin_acc_no'];
+$acc_no = $_GET['grin_acc_no'];
 $grin_url = "http://www.ars-grin.gov/cgi-bin/npgs/acc/search.pl?accid=".$acc_no;
 ?>
 
