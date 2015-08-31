@@ -1,0 +1,52 @@
+<?php
+// $Id$
+
+
+// Sudhansu Dash
+// 2015 August 19 proof of concept
+// 2015 Aug 27. Without FAPI (Drupal Form API)
+
+/**
+ * Implements hook_menu().
+ */
+
+function grinconnect_menu() {
+  $items = array();
+
+  
+$items['grinconnect/query'] = array( //this creates a URL
+    'title' => 'GRIN Connect Form', //page title
+    'description' => 'A form to acces USDA GRIN germplasm accession details from LIS.',
+    'page callback' => grinconnect_page_callback, //this is the function that will be called when the page is accessed.  for a form, use drupal_get_form
+    //'page arguments' => array('grin_acc_query_form'), //form name here // may be not reqd if page callback fn() doesn't need it.
+    'access callback' => TRUE,
+    
+  );
+
+  return $items;
+}
+
+
+/**
+ * Implements hook_theme().
+ */
+
+
+function grinconnect_theme() {
+  return array(
+    'grinconnect_page_template' => array(
+      'template' => 'grinconnect_page', // template file grinconnect_page.tpl.php
+      //'variables' => array('url' => NULL),
+        ),
+    );
+}
+
+
+function grinconnect_page_callback() {
+  
+  //return theme ('grinconnect_page_template', array('url' => $grin_url)); // page template used in theme()
+  return theme ('grinconnect_page_template'); // page template used in theme()
+
+}
+
+
