@@ -71,7 +71,7 @@ function find_examples() {
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>,  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Florunner</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Valencia</a>, 
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Georgia-13M</a>
         </div>
 EXAMPLES;
