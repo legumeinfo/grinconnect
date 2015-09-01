@@ -36,7 +36,7 @@ function grinconnect_theme() {
   return array(
     'grinconnect_page_template' => array(
       'template' => 'grinconnect_page', // template file grinconnect_page.tpl.php
-      //'variables' => array('url' => NULL),
+      'variables' => array('examples' => NULL),
         ),
     );
 }
@@ -44,9 +44,70 @@ function grinconnect_theme() {
 
 function grinconnect_page_callback() {
   
+  $examples = find_examples();
   //return theme ('grinconnect_page_template', array('url' => $grin_url)); // page template used in theme()
-  return theme ('grinconnect_page_template'); // page template used in theme()
+  
+  return theme ('grinconnect_page_template', array('examples' => $examples)); // page template used in theme()
 
 }
 
-
+function find_examples() {
+  //Find corresponding example html for peanutbase or LIS
+  //Passed on using $examples via hook_them() and theme()
+  $http_host = $_SERVER['HTTP_HOST'];
+  if (preg_match('/peanutbase/',$http_host)) {
+    $examples = <<<EXAMPLES
+        <div id="examples"  style="font-size:80%;">
+        <b>Example:</b>
+          <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>.
+          Use either 'PI 289619' with space between PI and the number OR just the number,
+          <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>289619</a>
+          without the prefix 'PI'. Searches with descriptors or variety names may not give results
+          for all GRIN holdings.
+        <br/>
+        <b>More examples:</b>  
+        <br/>
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>,  
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Florunner</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Valencia</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>
+        </div>
+EXAMPLES;
+    
+  } else {
+    $examples = <<<EXAMPLES
+        <div id="examples"  style="font-size:80%;">
+        <b>Example:</b>
+          <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>.
+          Use either 'PI 289619' with space between PI and the number OR just the number,
+          <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>289619</a>
+          without the prefix 'PI'. Searches with descriptors or variety names may not give results
+          for all GRIN holdings.
+        <br/>
+        <b>More examples:</b>  
+        <br/>
+        Common bean: 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 310511</a>,  
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Calima</a>,
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 325730</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Jamapa</a>,
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>DOR364</a>,
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>BAT93</a>
+        <br/>
+        Peanut:
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>,  
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Florunner</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Valencia</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>
+        <br/>
+        Chickpea:
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Ujjain24</a>,
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 374113</a>, 
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 489777</a>
+        </div>
+EXAMPLES;
+  }
+  return $examples;
+}
