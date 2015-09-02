@@ -23,9 +23,7 @@
 <div>
   <hr/>
   <fieldset  style="background: #E0E0E0;">
-    The following part displays a webpage directly from <b>GRIN.</b>
-    <br/>
-    Click the <b>Observations</b> link below to see the <b>evaluation data</b> at GRIN if it exist.
+    Your search will return a web page directly from <b>GRIN</b>. You may need to scroll down within the GRIN page below to see all of the information. In that page, click the <b>Observations</b> link to see <b>evaluation data</b> if it exists. 
   </fieldset>
 </div>
 

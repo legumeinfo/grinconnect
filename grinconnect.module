@@ -83,8 +83,7 @@ function select_examples() {
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>.
           Use either 'PI 289619' with space between PI and the number OR just the number,
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>289619</a>
-          without the prefix 'PI'. Searches with descriptors or variety names may not give results
-          for all GRIN holdings.
+          without the prefix 'PI'. Searches with a cultivar name may not give results for all GRIN holdings.
         <br/>
         <b>More examples:</b>  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>, 
@@ -103,8 +102,7 @@ EXAMPLES;
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>.
           Use either 'PI 289619' with space between PI and the number OR just the number,
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>289619</a>
-          without the prefix 'PI'. Searches with descriptors or variety names may not give results
-          for all GRIN holdings.
+          without the prefix 'PI'. Searches with a cultivar name may not give results for all GRIN holdings.
         <br/>
         <b>More examples:</b>&nbsp;&nbsp;&nbsp;&nbsp;  
         <!--<br/>-->
