@@ -5,6 +5,7 @@
 // Sudhansu Dash
 // 2015 August 19 proof of concept
 // 2015 Aug 27. Without FAPI (Drupal Form API)
+// 2015 Sep 02. Clickable and refined examples; blank iframe at start; all logic in .module file
 
 /**
  * Implements hook_menu().
@@ -34,26 +35,46 @@ $items['grinconnect/query'] = array( //this creates a URL
 
 function grinconnect_theme() {
   return array(
-    'grinconnect_page_template' => array(
+    'grinconnect_page_template' => array(  // this array name to be used in theme()
       'template' => 'grinconnect_page', // template file grinconnect_page.tpl.php
-      'variables' => array('examples' => NULL),
+      'variables' => array('examples' => NULL, 'grin_url' => NULL),
         ),
     );
 }
 
+/**
+ * Implements page callback.
+ */
 
 function grinconnect_page_callback() {
   
-  $examples = find_examples();
-  //return theme ('grinconnect_page_template', array('url' => $grin_url)); // page template used in theme()
+  //Get the grin_acc_no from URL
+  $acc_no = $_GET['grin_acc_no'];
   
-  return theme ('grinconnect_page_template', array('examples' => $examples)); // page template used in theme()
+  // if no grin_acc_no, show a blank iframe
+  // (avoid the GRIN webpage with no acc-- shows two forms, one ours and another from the iframe)
+  if ($acc_no != '') {
+    $grin_url = "http://www.ars-grin.gov/cgi-bin/npgs/acc/search.pl?accid=".$acc_no;
+  } else {
+    $grin_url = '';
+  }
+  
+  //select database specific example
+  $examples = select_examples();
+  
+  // array name in hook_theme() that specifies page template file.
+  return theme ('grinconnect_page_template', array('examples' => $examples, 'grin_url' => $grin_url)); 
 
 }
 
-function find_examples() {
+/**
+ * Select example based on http_host (peanutbase or LIS).
+ */
+
+function select_examples() {
+  
   //Find corresponding example html for peanutbase or LIS
-  //Passed on using $examples via hook_them() and theme()
+  //Passed on using $examples via hook_theme() and theme()
   $http_host = $_SERVER['HTTP_HOST'];
   if (preg_match('/peanutbase/',$http_host)) {
     $examples = <<<EXAMPLES
@@ -66,7 +87,6 @@ function find_examples() {
           for all GRIN holdings.
         <br/>
         <b>More examples:</b>  
-        <br/>
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>,  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Florunner</a>, 
@@ -86,29 +106,30 @@ EXAMPLES;
           without the prefix 'PI'. Searches with descriptors or variety names may not give results
           for all GRIN holdings.
         <br/>
-        <b>More examples:</b>  
-        <br/>
-        Common bean: 
+        <b>More examples:</b>&nbsp;&nbsp;&nbsp;&nbsp;  
+        <!--<br/>-->
+        Common bean:  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 310511</a>,  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Calima</a>,
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 325730</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Jamapa</a>,
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>DOR364</a>,
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>BAT93</a>
-        <br/>
-        Peanut:
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>BAT93</a>.  
+    
+        Peanut:  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>,  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Florunner</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Valencia</a>, 
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>
-        <br/>
-        Chickpea:
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>.  
+
+        Chickpea:  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Ujjain24</a>,
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 374113</a>, 
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 489777</a>
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 489777</a>.
         </div>
 EXAMPLES;
   }
   return $examples;
 }
+
