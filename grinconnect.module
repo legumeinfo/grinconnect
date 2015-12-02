@@ -54,7 +54,9 @@ function grinconnect_page_callback() {
   // if no grin_acc_no, show a blank iframe
   // (avoid the GRIN webpage with no acc-- shows two forms, one ours and another from the iframe)
   if ($acc_no != '') {
-    $grin_url = "http://www.ars-grin.gov/cgi-bin/npgs/acc/search.pl?accid=".$acc_no;
+    //$grin_url = "http://www.ars-grin.gov/cgi-bin/npgs/acc/search.pl?accid=".$acc_no; Obsolete after GRIN changed their website URL to
+    //https://npgsweb.ars-grin.gov/gringlobal/accessiondetail.aspx //Dec 2015
+    $grin_url = "https://npgsweb.ars-grin.gov/gringlobal/accessiondetail.aspx?accid=".$acc_no; 
   } else {
     $grin_url = '';
   }
@@ -81,7 +83,7 @@ function select_examples() {
         <div id="examples"  style="font-size:80%;">
         <b>Example:</b>
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>.
-          Use either 'PI 289619' with space between PI and the number OR just the number,
+          Use either 'PI 289619' with space between PI and the number. OR just the number,
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>289619</a>
           without the prefix 'PI'. Searches with a cultivar name may not give results for all GRIN holdings.
         <br/>
@@ -98,31 +100,34 @@ EXAMPLES;
   } else {
     $examples = <<<EXAMPLES
         <div id="examples"  style="font-size:80%;">
-        <b>Example:</b>
+        <b>Examples:</b>
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>.
-          Use either 'PI 289619' with space between PI and the number OR just the number,
+          Use 'PI 289619' with space between PI and the number.
+          <!-- OR just the number,
           <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>289619</a>
           without the prefix 'PI'. Searches with a cultivar name may not give results for all GRIN holdings.
         <br/>
         <b>More examples:</b>&nbsp;&nbsp;&nbsp;&nbsp;  
-        <!--<br/>-->
+        <br/>
+        -->
         Common bean:  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 310511</a>,  
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Calima</a>,
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 325730</a>, 
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Jamapa</a>,
+        <!--<a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Calima</a>,-->
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 325730</a>. 
+        <!--<a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Jamapa</a>,
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>DOR364</a>,
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>BAT93</a>.  
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>BAT93</a>-->  
     
         Peanut:  
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 289619</a>, 
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>,  
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 565448</a>.  
+        <!--
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Florunner</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Valencia</a>, 
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>.  
+        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Tifrunner</a>-->  
 
         Chickpea:  
-        <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Ujjain24</a>,
+        <!--<a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>Ujjain24</a>,-->
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 374113</a>, 
         <a href="#" onclick='document.getElementById("grin_acc_no").value=this.innerHTML;'>PI 489777</a>.
         </div>
