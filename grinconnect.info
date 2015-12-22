@@ -3,7 +3,7 @@ description = GRIN Connect: Connect to the USDA GRIN Germplasm database from LIS
 core = 7.x
 files[] = grinconnect.module
 
-;package = 
+package = lis_germplasm 
 ;dependencies[] = 
 ;dependencies[] = 
 ;files[] = 
