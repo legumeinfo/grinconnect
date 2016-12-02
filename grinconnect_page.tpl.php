@@ -15,6 +15,8 @@
   &nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="SUBMIT">
   <br>
   <?php  echo($examples); // from the module file via _theme() ?>
+  
+  <b style="color:Crimson;">Ordering germplasm accessions</b>:<span style="font-size:80%;"> You must do it within the GRIN website, click 'Add to Order'.&nbsp;&nbsp;(We only display the relevant information and do not maintain the germplasm stocks).</span>
 
 </form>
 </div>
